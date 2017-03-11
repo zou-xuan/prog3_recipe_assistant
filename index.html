@@ -5,6 +5,10 @@
     <title>Recipe Assistant</title>
     <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/my.css">
+    <link type="text/css" rel="stylesheet" href="css/jquery.dataTables.min.css">
+    <link type="text/css" rel="stylesheet" href="css/dataTables.bootstrap4.min.css">
+
 
 </head>
 <body>
@@ -24,7 +28,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a class="page-scroll" href="#add">Add</a>
+                    <a class="page-scroll" href="addRecipe.html">Add</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#search">Search</a>
@@ -39,14 +43,64 @@
 
 <section style="padding-top: 50px">
     <div class="background-image">
-
     </div>
-    <div>
-        <button type="button" class="btn btn-primary">Test</button>
+    <div style="padding-top: 20px;" class="col-md-8">
+        <table id="recipe_table" class="table table-hover" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>image</th>
+                <th>name</th>
+                <th>ingredient</th>
+                <th>direction</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>IMAGE</td>
+                <td>NAME</td>
+                <td>INGRE</td>
+                <td>DIRE</td>
+            </tr>
+            <tr>
+                <td>IMAGE</td>
+                <td>NAME</td>
+                <td>INGRE</td>
+                <td>DIRE</td>
+            </tr>
+            <tr>
+                <td>IMAGE</td>
+                <td>NAME</td>
+                <td>INGRE</td>
+                <td>DIRE</td>
+            </tr>
+            <tr>
+                <td>IMAGE</td>
+                <td>NAME</td>
+                <td>INGRE</td>
+                <td>DIRE</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </section>
 
 
+
+<script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+//        $.getJSON("",function (data) {
+//            window.alert(data);
+//        });
+        var link="akldfkaljsdlf";
+
+
+        $('#recipe_table').DataTable({});
+    });
+</script>
 </body>
 </html>
