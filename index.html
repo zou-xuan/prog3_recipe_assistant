@@ -41,7 +41,7 @@
     </div>
 </nav>
 
-<section style="padding-top: 50px; height: 700px">
+<section id="main_section" style="padding-top: 50px; height: 700px">
     <div class="background-image">
     </div>
     <div style="padding-top: 20px;" class="col-md-8">
@@ -54,36 +54,11 @@
                 <th>direction</th>
             </tr>
             </thead>
-            <tbody>
-            <tr>
-                <td>IMAGE</td>
-                <td>NAME</td>
-                <td>INGRE</td>
-                <td>DIRE</td>
-            </tr>
-            <tr>
-                <td>IMAGE</td>
-                <td>NAME</td>
-                <td>INGRE</td>
-                <td>DIRE</td>
-            </tr>
-            <tr>
-                <td>IMAGE</td>
-                <td>NAME</td>
-                <td>INGRE</td>
-                <td>DIRE</td>
-            </tr>
-            <tr>
-                <td>IMAGE</td>
-                <td>NAME</td>
-                <td>INGRE</td>
-                <td>DIRE</td>
-            </tr>
+            <tbody id="table_body">
             </tbody>
         </table>
     </div>
 </section>
-
 
 
 <script src="js/jquery.js"></script>
@@ -92,13 +67,51 @@
 <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
 
 <script>
-    $(document).ready(function() {
-//        $.getJSON("",function (data) {
-//            window.alert(data);
-//        });
+    $(document).ready(function () {
+        var table='';
+        $.getJSON('https://w4s3u0d2ih.execute-api.us-east-1.amazonaws.com/prod/Recipes?TableName=Recipes',
+                function (data) {
+                    $.each(data.Items, function (index, value) {
+//                console.log(value.ImageURL+value.Name+value.Ingredients+value.Directions);
+                        var imageURL = value.ImageURL;
+                        var name = value.Name;
+                        var ingredient = value.Ingredients;
+                        var direction = value.Directions;
+                        var row = $('<tr>');
+                        var image_cell = $('<td>');
+                        var img = $('<img>');
+                        img.attr('src', imageURL);
+                        img.attr('height','50px');
+                        image_cell.append(img);
+                        var name_cell=$('<td>');
+                        name_cell.html(name);
+                        var ingredient_cell=$('<td>');
+                        ingredient_cell.html('ingredient');
+                        var direction_cell=$('<td>');
+                        direction_cell.html('direction');
+                        row.append(image_cell);
+                        row.append(name_cell);
+                        row.append(ingredient_cell);
+                        row.append(direction_cell);
+                        $('#table_body').append(row);
+                    });
+                    table=$('#recipe_table').DataTable({});
+                });
+
+        $('#recipe_table tbody').on('click', 'td', function () {
+//            var rowIndex = table.cell(this).index().row;
+            var columnIndex = table.cell(this).index().column;
+            var rowData=table.row(this).data();
+//            window.alert(rowData[1]);
+            if (columnIndex == 2) {
+                window.location = 'ingredient.html?name=' + rowData[1];
+            }
+            if (columnIndex == 3) {
+                window.location = 'recipe.html?name=' + rowData[1];
+            }
+        });
 
 
-        $('#recipe_table').DataTable({});
     });
 </script>
 </body>

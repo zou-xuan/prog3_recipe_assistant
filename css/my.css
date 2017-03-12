@@ -14,7 +14,7 @@
 
 /*}*/
 
-body{
+#main_section{
     background-image: url('../img/dish.gif');
     background-position: right bottom;
     background-repeat: no-repeat;
