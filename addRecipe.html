@@ -11,7 +11,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        label, p{
+        label, p {
             font-size: 18px;
         }
     </style>
@@ -95,19 +95,34 @@
                 url: 'https://w4s3u0d2ih.execute-api.us-east-1.amazonaws.com/prod/Recipes?TableName=Recipes',
                 type: 'POST',
                 data: JSON.stringify({
-                    'TableName:': 'Recipes', 'Item': {
-                        'Name': title, 'Ingredients': ingredient,
-                        'Directions': preparation, 'ImageURL': link
+                    "TableName": "Recipes", "Item": {
+                        "Name": title, "Ingredients": ingredient,
+                        "Directions": preparation, "ImageURL": link
                     }
                 }),
-                success: function (data) {
+                success: function (mesg) {
                     alert('success');
                 },
-                error: function () {
+                error: function (xhr, ajaxOptions, thrownError) {
                     alert('error');
                 }
             });
+
         });
+//        $("#submit_button").click(function(){
+//            $.ajax({
+//                url: 'https://w4s3u0d2ih.execute-api.us-east-1.amazonaws.com/prod/Recipes?TableName=Recipes',
+//                type: 'POST',
+//                data: JSON.stringify({"TableName": "Recipes", "Item": {"Name":"ZZZZ", "Ingredients":"XXX\nIII", "Directions":"BB", "ImageURL":"AAA"}}),
+//                success: function(data) {
+//                    alert("POSTed successfully");
+//                },
+//                error: function(xhr, ajaxOptions, thrownError) {
+//                    alert("Error");
+//                }
+//            });
+//        });
+
     });
 
 </script>
