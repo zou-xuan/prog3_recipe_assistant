@@ -48,10 +48,10 @@
         <table id="recipe_table" class="table table-hover" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th>image</th>
-                <th>name</th>
-                <th>ingredient</th>
-                <th>direction</th>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Ingredient</th>
+                <th>Direction</th>
             </tr>
             </thead>
             <tbody id="table_body">
@@ -86,9 +86,16 @@
                         var name_cell = $('<td>');
                         name_cell.html(name);
                         var ingredient_cell = $('<td>');
-                        ingredient_cell.html('ingredient');
+                        var ingredient_img=$('<img>');
+                        ingredient_img.attr('src','img/ingredient.png');
+                        ingredient_img.attr('height','30px');
+                        ingredient_cell.append(ingredient_img);
+
                         var direction_cell = $('<td>');
-                        direction_cell.html('direction');
+                        var direction_img=$('<img>');
+                        direction_img.attr('src','img/instruction.png');
+                        direction_img.attr('height','30px');
+                        direction_cell.append(direction_img);
                         row.append(image_cell);
                         row.append(name_cell);
                         row.append(ingredient_cell);

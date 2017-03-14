@@ -6,6 +6,11 @@
     <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="css/my.css">
+    <style>
+        label {
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top ">
@@ -27,7 +32,7 @@
                     <a class="page-scroll" href="index.html">Home</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#back">Back</a>
+                    <a class="page-scroll" href="index.html">Back</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#search">Search</a>
@@ -40,22 +45,20 @@
 <section style="padding-top: 60px">
     <div class="col-md-10 col-md-offset-1">
         <div id="img" class="col-md-6">
-            <div>
-                <h1 id="name_text"></h1>
+            <div style="padding-bottom: 30px">
+                <h2 id="name_text"></h2>
             </div>
             <div>
-                <img id="image" width="80%"   class="img-thumbnail">
+                <img id="image" width="80%" class="img-thumbnail">
             </div>
         </div>
         <div id="text_content" class="col-md-6">
             <div style="padding-top: 30px" id="ingredient">
                 <label for="ingredient_list">Ingredients</label>
-                <!--<textarea class="form-control" id="ingredient_text" rows="10"></textarea>-->
                 <ul id="ingredient_list"></ul>
             </div>
-            <div>
+            <div style="padding-top: 30px">
                 <label for="direction_list">Directions</label>
-                <!--<textarea class="form-control" id="direction_text" rows="25"></textarea>-->
                 <ul id="direction_list"></ul>
             </div>
 
@@ -78,7 +81,6 @@
 
             for (i = 0; i < sURLVariables.length; i++) {
                 sParameterName = sURLVariables[i].split('=');
-
                 if (sParameterName[0] === sParam) {
                     return sParameterName[1] === undefined ? true : sParameterName[1];
                 }
@@ -93,9 +95,9 @@
                             var direction_text = value.Directions;
                             var imageURL = value.ImageURL;
                             var ingredient_array = ingredient_text.split("\n");
-                            var direction_array=direction_text.split('\n');
+                            var direction_array = direction_text.split('\n');
                             $('#name_text').html(name);
-                            $('#image').attr('src',imageURL);
+                            $('#image').attr('src', imageURL);
                             $.each(ingredient_array, function (index, item) {
                                 var one = $('<li>');
                                 one.addClass('ingredient_content');

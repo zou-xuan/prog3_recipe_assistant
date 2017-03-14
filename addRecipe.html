@@ -9,6 +9,13 @@
     <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="themes/explorer/theme.css" type="text/css" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        label, p{
+            font-size: 18px;
+        }
+    </style>
+
 </head>
 <body>
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top ">
@@ -41,15 +48,17 @@
     </div>
     <div class="form-group row">
         <label for="ingredient_text" class=" col-form-label">Ingredient</label>
-        <textarea class="form-control" id="ingredient_text" rows="5"></textarea>
+        <textarea class="form-control" id="ingredient_text" rows="8"></textarea>
     </div>
     <div class="form-group row">
-        <label for="preparation_text" class=" col-form-label">Preparation</label>
-        <textarea class="form-control" id="preparation_text" rows="5"></textarea>
+        <label for="preparation_text" class=" col-form-label">Direction</label>
+        <textarea class="form-control" id="preparation_text" rows="8"></textarea>
     </div>
     <div class="form-group row">
         <label for="image_upload" class="control-label">Upload image</label>
         <input id="image_upload" name="image_upload[]" type="file" multiple class="file-loading">
+        <p style="padding-top: 10px;">Or input link</p>
+        <input type="text" class="form-control" id="link_text">
     </div>
 
     <div class="form-group row col-md-offset-4">
@@ -78,10 +87,26 @@
             $('#image_upload').fileinput('clear');
         });
         $('#submit_button').click(function () {
-           var title=$('#title_text').val();
-            var ingredient=$('#ingredient_text').val();
-            var preparation= $('#preparation_text').val();
-            //TODO send to server
+            var title = $('#title_text').val();
+            var ingredient = $('#ingredient_text').val();
+            var preparation = $('#preparation_text').val();
+            var link = $('#link_text').val();
+            $.ajax({
+                url: 'https://w4s3u0d2ih.execute-api.us-east-1.amazonaws.com/prod/Recipes?TableName=Recipes',
+                type: 'POST',
+                data: JSON.stringify({
+                    'TableName:': 'Recipes', 'Item': {
+                        'Name': title, 'Ingredients': ingredient,
+                        'Directions': preparation, 'imageURL': link
+                    }
+                }),
+                success: function (data) {
+                    alert('success');
+                },
+                error: function () {
+                    alert('error');
+                }
+            });
         });
     });
 
