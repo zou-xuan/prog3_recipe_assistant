@@ -68,7 +68,7 @@
 
 <script>
     $(document).ready(function () {
-        var table='';
+        var table = '';
         $.getJSON('https://w4s3u0d2ih.execute-api.us-east-1.amazonaws.com/prod/Recipes?TableName=Recipes',
                 function (data) {
                     $.each(data.Items, function (index, value) {
@@ -81,13 +81,13 @@
                         var image_cell = $('<td>');
                         var img = $('<img>');
                         img.attr('src', imageURL);
-                        img.attr('height','50px');
+                        img.attr('height', '50px');
                         image_cell.append(img);
-                        var name_cell=$('<td>');
+                        var name_cell = $('<td>');
                         name_cell.html(name);
-                        var ingredient_cell=$('<td>');
+                        var ingredient_cell = $('<td>');
                         ingredient_cell.html('ingredient');
-                        var direction_cell=$('<td>');
+                        var direction_cell = $('<td>');
                         direction_cell.html('direction');
                         row.append(image_cell);
                         row.append(name_cell);
@@ -95,13 +95,13 @@
                         row.append(direction_cell);
                         $('#table_body').append(row);
                     });
-                    table=$('#recipe_table').DataTable({});
+                    table = $('#recipe_table').DataTable({});
                 });
 
         $('#recipe_table tbody').on('click', 'td', function () {
 //            var rowIndex = table.cell(this).index().row;
             var columnIndex = table.cell(this).index().column;
-            var rowData=table.row(this).data();
+            var rowData = table.row(this).data();
 //            window.alert(rowData[1]);
             if (columnIndex == 2) {
                 window.location = 'ingredient.html?name=' + rowData[1];

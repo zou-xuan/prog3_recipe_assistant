@@ -19,3 +19,11 @@
     background-position: right bottom;
     background-repeat: no-repeat;
 }
+
+.ingredient_content {
+    font-size: 20px;
+}
+
+.direction_content{
+    font-size: 20px;
+}

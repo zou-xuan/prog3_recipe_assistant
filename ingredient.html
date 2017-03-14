@@ -5,6 +5,10 @@
     <title>Ingredient</title>
     <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="css/my.css">
+    <style>
+
+    </style>
 </head>
 <body>
 <nav id="mainNav" class="navbar navbar-default navbar-fixed-top ">
@@ -37,28 +41,53 @@
 </nav>
 
 <section id="ingredient_section" style="padding-top: 60px">
-    <div class="col-md-6 col-md-offset-4">
+    <div class="col-md-6 col-md-offset-4" >
         <h2>Ingredient List</h2>
-        <!--<ul style="font-size: 20px">-->
-            <!--<li>asdflkajkdfasdflkajkdfasdflkajkdfasdflkajkdfasdflkajkdf</li>-->
-            <!--<li>asdflkajkdfasdflkajkdfasdflkajkdfasdflkajkdf</li>-->
-            <!--<li>asdflkajasdflkajkdfasdflkajkdfkdf</li>-->
-            <!--<li>asdflkasdflkajkdfaasdflkajkdfasdflkajkdfjkdf</li>-->
-        <!--</ul>-->
-        <p>asdtfgasddgsefgh
-            asdtfgasddgsefgh
-            asdtfgasddgsefgh
-            asdtfgasddgsefgh
-            asdtfgasddgsefgh</p>
-        <p>asdfl;kajsdgkla;dj</p>
-        <p>aokfdghqaelk;grjoeqi</p>
+        <ul id="ingredient_list">
+
+        </ul>
+        <!--<p ></p>-->
+
     </div>
 </section>
 
 <script src="js/jquery.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script>
+    $(document).ready(function () {
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                    sURLVariables = sPageURL.split('&'),
+                    sParameterName,
+                    i;
 
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+        var name = getUrlParameter('name');
+//        window.alert(name);
+        $.getJSON('https://w4s3u0d2ih.execute-api.us-east-1.amazonaws.com/prod/Recipes?TableName=Recipes',
+                function (data) {
+                    $.each(data.Items, function (index, value) {
+                        if (value.Name === name) {
+                            var ingredient_text = value.Ingredients;
+                            var array = ingredient_text.split("\n");
+//                            window.alert(array);
+                            $.each(array, function (index, item) {
+                                var one = $('<li>');
+                                one.addClass('ingredient_content');
+                                one.html(item);
+                                $('#ingredient_list').append(one);
+                            });
+                        }
+                    });
+                });
+
+    });
 </script>
 
 </body>

@@ -5,8 +5,8 @@
     <title>Add Recipe</title>
     <link type="text/css" rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css">
-    <!--<link type="text/css" rel="stylesheet" href="css/my.css">-->
-    <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css" />
+    <link type="text/css" rel="stylesheet" href="css/my.css">
+    <link href="css/fileinput.min.css" media="all" rel="stylesheet" type="text/css"/>
     <link href="themes/explorer/theme.css" type="text/css" rel="stylesheet"/>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -52,8 +52,12 @@
         <input id="image_upload" name="image_upload[]" type="file" multiple class="file-loading">
     </div>
 
-</section>
+    <div class="form-group row col-md-offset-4">
+        <button class="btn btn-default" style="margin-right: 90px;" id="cancel_button">Cancel</button>
+        <button class="btn btn-primary" id="submit_button">Submit</button>
+    </div>
 
+</section>
 
 
 <script src="js/jquery.js"></script>
@@ -65,9 +69,22 @@
 <script src="themes/explorer/theme.js"></script>
 <script src="themes/fa/theme.js"></script>
 <script>
-    $(document).on('ready', function() {
+    $(document).on('ready', function () {
         $("#image_upload").fileinput({showCaption: false});
+        $('#cancel_button').click(function () {
+            $('#title_text').val('');
+            $('#ingredient_text').val('');
+            $('#preparation_text').val('');
+            $('#image_upload').fileinput('clear');
+        });
+        $('#submit_button').click(function () {
+           var title=$('#title_text').val();
+            var ingredient=$('#ingredient_text').val();
+            var preparation= $('#preparation_text').val();
+            //TODO send to server
+        });
     });
+
 </script>
 </body>
 </html>
